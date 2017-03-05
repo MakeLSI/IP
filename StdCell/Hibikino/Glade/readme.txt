@@ -41,6 +41,8 @@ File->Export¨Export CDL‚Åi‚Ù‚ÚjspiceŒ`®‚ÌƒlƒbƒgƒŠƒXƒg‚ğo—Í‚Å‚«‚éB
 
 ›P-Cell
 P-Cell(parameterized cell)‚Æ‚ÍAMOSƒgƒ‰ƒ“ƒWƒXƒ^‚È‚Ç‚Ì—v‘f•”•i‚ğA‚»‚ÌŒ`óƒpƒ‰ƒ[ƒ^iƒQ[ƒg’·‚È‚Çj‚ğw’è‚µ‚ÄA©“®“I‚ÉƒŒƒCƒAƒEƒg‚ğì¬‚·‚é‹@”\B
+‚È‚¨Glade‚Ìd—l‚ÅAŠÂ‹«•Ï”PYTHONPATH‚Åw’è‚·‚éƒtƒHƒ‹ƒ_‚ÉA‚±‚ê‚ç‚ÌƒXƒNƒŠƒvƒg(*.py)‚ğ’u‚­•K—v‚ª‚ ‚éB(Windows‚È‚çƒVƒXƒeƒ€¨Ú×İ’è‚©‚çŠÂ‹«•Ï”‚ğw’è‚·‚éB¦ƒpƒX‚Ì‹æØ‚è‚Í\()‚Å‚Í‚È‚­/‚ğg‚¤–Í—l)
+
 (1)nMOS/pMOS—p
 1.nmos_master.py‚Æpmos_master.py‚ğ‚Ç‚±‚©‚É’u‚«AŠÂ‹«•Ï”PYTHONPATH‚ğA‚»‚ÌƒfƒBƒŒƒNƒgƒŠ‚Éİ’è‚·‚éi‚È‚¢ê‡‚Íì¬AŠù‚É‚ ‚éê‡‚Í’Ç‰ÁjB‚Ü‚½‚Í‚±‚ê‚ç‚ğGlade‚ÌƒfƒBƒŒƒNƒgƒŠ(EEE/glade_win64/‚È‚Ç)‚É’u‚­B
 2.New->Cell‚ÅCell‚ğì¬‚·‚é‚Æ‚«A"CellView is a Pcell"‚ğƒ`ƒFƒbƒN‚µA"Pcell script"‚ÉA‚±‚ê‚ç‚Ì*.py‚ğw’è‚µAOK‚·‚é‚ÆAnmos_master‚Ü‚½‚Ínmos_master‚Ìlayout‚ªì¬‚³‚ê‚éB‚±‚ê‚ç‚ÌƒTƒCƒY‚Í•W€’l‚Åì¬‚³‚ê‚éBi‚±‚ÌƒZƒ‹‚ğsuper master‚ÆŒÄ‚Ôj
@@ -56,7 +58,11 @@ P-Cell(parameterized cell)‚Æ‚ÍAMOSƒgƒ‰ƒ“ƒWƒXƒ^‚È‚Ç‚Ì—v‘f•”•i‚ğA‚»‚ÌŒ`óƒpƒ‰ƒ
 ¦Glade‘€ìƒƒ‚
 EDisplayOption->Miscellaneous‚ÌAlways pop up option dialog‚ğ‚Í‚¸‚·‚ÆAMove‚È‚Ç‚Ì‚½‚Ñ‚ÉƒIƒvƒVƒ‡ƒ“‰æ–Ê‚ª•\¦‚³‚ê‚È‚¢iF3‚Å“K‹X•\¦‚Å‚«‚éj
 Eschematic/symbol‚ğŠJ‚¢‚½ó‘Ô‚ÅCheckCellview‚·‚é‚ÆAMOSFET‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ÍƒZƒ‹–¼‚Ìæ“ª‚ªM(spice‚ÅMOSFET‚ğ‚ ‚ç‚í‚·)‚È‚ÇA©“®‚Å‘fq–¼‚É‘Î‰‚µ‚½‚à‚Ì‚É‚È‚éB‚±‚ê‚ÍDisplayOptions->ObjectSettings‚É‚ ‚é"InstanceNames"‚ğPreserve‚É‚·‚é‚ÆA©“®‚Å•ÏX‚³‚ê‚È‚­‚Å‚«‚éB
-
+E%HOME%‚É‚ ‚é.glade.py‚ğ‹N“®‚É“Ç‚İ‚Ş‚æ‚¤‚È‚Ì‚ÅA‚±‚±‚ÉA—á‚¦‚ÎˆÈ‰º‚Ì‚æ‚¤‚Éƒ‰ƒCƒuƒ‰ƒŠ‚ğ“Ç‚İ‚ŞƒXƒNƒŠƒvƒg‚ğ‘‚¢‚Ä‚¨‚¯‚ÎA‹N“®‚É“Ç‚İ‚ß‚é‚Í‚¸Bi‚½‚¾‚µ‚Ç‚¤‚à‚±‚Ìƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ñ‚Å‚­‚ê‚È‚¢EEEby akita11:170305)
+-----------
+lib = library("Hibikino_StdCell")
+lib.dbOpenLib("C:/Users/akita/Documents/MakeLSI/IP/StdCell/Hibikino/Glade/Hibikino_StdCell")
+-----------
 
 ----------------------------------------
 ƒXƒ^ƒZƒ‹ì¬‚Ìwj
