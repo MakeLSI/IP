@@ -58,10 +58,10 @@ P-Cell(parameterized cell)‚Æ‚ÍAMOSƒgƒ‰ƒ“ƒWƒXƒ^‚È‚Ç‚Ì—v‘f•”•i‚ğA‚»‚ÌŒ`óƒpƒ‰ƒ
 ¦Glade‘€ìƒƒ‚
 EDisplayOption->Miscellaneous‚ÌAlways pop up option dialog‚ğ‚Í‚¸‚·‚ÆAMove‚È‚Ç‚Ì‚½‚Ñ‚ÉƒIƒvƒVƒ‡ƒ“‰æ–Ê‚ª•\¦‚³‚ê‚È‚¢iF3‚Å“K‹X•\¦‚Å‚«‚éj
 Eschematic/symbol‚ğŠJ‚¢‚½ó‘Ô‚ÅCheckCellview‚·‚é‚ÆAMOSFET‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ÍƒZƒ‹–¼‚Ìæ“ª‚ªM(spice‚ÅMOSFET‚ğ‚ ‚ç‚í‚·)‚È‚ÇA©“®‚Å‘fq–¼‚É‘Î‰‚µ‚½‚à‚Ì‚É‚È‚éB‚±‚ê‚ÍDisplayOptions->ObjectSettings‚É‚ ‚é"InstanceNames"‚ğPreserve‚É‚·‚é‚ÆA©“®‚Å•ÏX‚³‚ê‚È‚­‚Å‚«‚éB
-E%HOME%‚É‚ ‚é.glade.py‚ğ‹N“®‚É“Ç‚İ‚Ş‚æ‚¤‚È‚Ì‚ÅA‚±‚±‚ÉA—á‚¦‚ÎˆÈ‰º‚Ì‚æ‚¤‚Éƒ‰ƒCƒuƒ‰ƒŠ‚ğ“Ç‚İ‚ŞƒXƒNƒŠƒvƒg‚ğ‘‚¢‚Ä‚¨‚¯‚ÎA‹N“®‚É“Ç‚İ‚ß‚é‚Í‚¸Bi‚½‚¾‚µ‚Ç‚¤‚à‚±‚Ìƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ñ‚Å‚­‚ê‚È‚¢EEEby akita11:170305)
+EGlade‚Í%HOME%‚É‚ ‚é.glade.py‚ğ‹N“®‚É“Ç‚İ‚Ş‚Ì‚ÅA—á‚¦‚ÎˆÈ‰º‚Ì‚æ‚¤‚Éƒ‰ƒCƒuƒ‰ƒŠ‚ğ“Ç‚İ‚ŞƒXƒNƒŠƒvƒg‚ğ‘‚¢‚Ä‚¨‚¯‚ÎA‹N“®‚É“Ç‚İ‚ß‚éB‚½‚¾‚µ‚Ç‚¤‚àGlade‚ÌƒoƒO‚Ì‚æ‚¤‚ÅAŠÂ‹«•Ï”%HOME%‚ÍQÆ‚µ‚Ä‚¢‚È‚¢‚æ‚¤‚ÅAc:/Users/??? (???=ƒ†[ƒU–¼B‚¢‚í‚ä‚éHOME)‚É‚¨‚¢‚Ä‚¨‚¯‚Î“Ç‚İ‚Ü‚ê‚éB(î•ñ’ñ‹ŸFmuo‚³‚ñ)
 -----------
 lib = library("Hibikino_StdCell")
-lib.dbOpenLib("C:/Users/akita/Documents/MakeLSI/IP/StdCell/Hibikino/Glade/Hibikino_StdCell")
+lib.dbOpenLib("C:/Users/???/Documents/MakeLSI/IP/StdCell/Hibikino/Glade/Hibikino_StdCell")
 -----------
 
 ----------------------------------------
