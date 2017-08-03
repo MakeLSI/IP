@@ -1,0 +1,169 @@
+;
+; DRC command file for standard CMOS λ rule (simple version)
+;     25-March-2001 by K. ASADA
+;     ([G] stands for GEX integer grid)
+;
+;   (2014/12/25) modified for Kitakyushu-Hibikino process by J.Akita
+;   (2015/04/17) bug fix to check act (thanks ksmakoto)
+;   (2016/01/16) modified to fit Phenitec's rule (by J.Akita)
+;   (2016/06/09) added VIA rule, modified to fit Phenitec' rule (by J.Akita & C.Takahashi)
+;   (2016/06/14) added Act-Poly rule (by J.Akita)
+;   (2016/07/03) bug fix
+;   (2016/09/17) N/P Well overlap error fix
+;
+#size	1.0 um			; Phisical size of UNIT in GeX (overidden by WGEX's grid size)
+;
+#define NWL 1  ; N-Well
+#define PWL 2  ; P-Well
+#define CST 3  ; ChannelStop
+#define ACT 4  ; Active
+#define VTN 5  ; Vth-N (can be generated from N-Select)
+#define VTP 6  ; Vth-P (can be generated from P-Select)
+#define POL 7  ; Poly
+#define NSL 8  ; N-Select
+#define PSL 9  ; P-Select
+#define CNA 10 ; Contact-Active
+#define CNP 11 ; Contact-Poly
+#define ML1 12 ; Metal1
+#define VIA 13 ; VIA
+#define ML2 14 ; Metal2
+; layers for working
+#define	NMOS 15 ; N-FET Channel layer.
+#define	PMOS 16 ; P-FET Channel layer.
+#define CDN     17		; N-diffusion
+#define CDP     18		; P-diffusion
+#define	CNO  19
+#define	CNQ  20
+#define	VIO  21
+#define	EXT  22
+#define CSO  23
+#define ACO  24
+#define AVI  25
+;
+; modified 2015/04/17: check ACT gap prior to CDN/CDP generation
+#for (ACT) check_gap 4 [G] to (ACT)		; N/P-Diffusion
+#for (ACT) check_width 4 [G] and_gap 4 [G]	
+;
+;
+;
+#for (NSL & ACT) convert (ACT) to (CDN)	; N-diffusion
+#for (PSL & ACT) convert (ACT) to (CDP)	; P-diffusion
+;
+; DRC-1		Minimum gap
+;
+;#for (POL) check_gap 2 [G] to (POL)		; Polysilicon
+#for (POL) check_gap 3 [G] to (POL)		; Polysilicon (Phenitec)
+#for (ML1) check_gap 4 [G] to (ML1)		; 1-st Metal
+#for (ML2) check_gap 4 [G] to (ML2)		; 2-nd Metal
+#for (CNA) check_gap 2 [G] to (CNA)		; contact hole
+#for (CNP) check_gap 2 [G] to (CNP)		; contact hole
+#for (VIA) check_gap 4 [G] to (VIA)		; thru hole
+#for (POL) check_gap 2 [G] to (CDN)		; Poly-Act(N) gap
+#for (POL) check_gap 2 [G] to (CDP)		; Poly-Act(P) gap
+;
+;  Conversion for FET Channel Regions.
+;
+#for (CDN & POL) convert (CDN) to (NMOS)	; N-FET
+#for (CDP & POL) convert (CDP) to (PMOS)	; P-FET
+;
+; DRC-2		FET - Contact gap
+;
+;#for (PMOS) check_gap 4 [G] to (CCH)		; FET-contact hole
+;#for (NMOS) check_gap 4 [G] to (CCH)		; FET-contact hole
+;
+; DRC-3		Minimum Width
+;
+;#for (NWL) check_width 6 [G] and_gap 4 [G]	
+;#for (PWL) check_width 6 [G] and_gap 4 [G]	
+#for (NWL) check_width 9 [G] and_gap 14 [G] ; for Phenitec
+#for (PWL) check_width 9 [G] and_gap 14 [G] ; for Phenitec
+#for (CST) check_width 4 [G] and_gap 4 [G]	
+#for (NSL) check_width 8 [G] and_gap 0 [G]	
+#for (PSL) check_width 8 [G] and_gap 0 [G]	
+#for (POL) check_width 2 [G] and_gap 2 [G]
+#for (ML1) check_width 6 [G] and_gap 4 [G]
+#for (ML2) check_width 6 [G] and_gap 4 [G]
+;#for (ML1) check_width 3 [G] and_gap 3 [G] ; for Phenitec's minimum
+;#for (ML2) check_width 3 [G] and_gap 3 [G] ; for Phenitec's minimum
+#for (VIA) check_width 4 [G] and_gap 4 [G]
+#for (CNA) check_width 2 [G] and_gap 2 [G]
+#for (CNP) check_width 2 [G] and_gap 2 [G]
+;
+; DRC-4		Contact/Thru-hole Overlap
+;
+#for (CNA)	make_oversize 2 [G] as (CNO)
+#for (CNP)	make_oversize 2 [G] as (CNQ)
+#for (CNO & !ML1) warning  CNAとM1の重なりが小さすぎる(2um以上)
+#for (CNQ & !ML1) warning  CNPとM1の重なりが小さすぎる(2um以上)
+#for (CNO & !CDN & !CDP) warning  CNAがACTの重なりが小さすぎる(2um以上)
+#for (CNQ & !POL) warning  CNPがPOLの重なりが小さすぎる(2um以上)
+;
+#for (VIA)	make_oversize 2 [G] as (VIO)
+#for (VIO & !ML1) warning  VIAがM1の重なりが小さすぎる(2um以上)
+#for (VIO & !ML2) warning  VIAがM2の重なりが小さすぎる(2um以上)
+;
+; DRC-5		FET gate extention
+;
+;#for (NMOS)	make_extension 2 [G] along (CDN) as (EXT)
+#for (NMOS)	make_extension 3 [G] along (CDN) as (EXT) ; for Phenitec
+#for (EXT & !POL) warning ゲート(POL)のnMOSからのはみ出しが短すぎる(3um以上)
+;#for (PMOS)	make_extension 2 [G] along (CDP) as (EXT)
+#for (PMOS)	make_extension 3 [G] along (CDP) as (EXT) ; for Phenitec
+#for (EXT & !POL) warning ゲート(POL)のpMOSからのはみ出しが短すぎる(3um以上)
+;
+; Diffusion(Act)-Select
+;
+#for (CDN)	make_oversize 2 [G] as (ACO)
+#for (ACO & !NSL) warning  NSLとACTの重なりが小さすぎる(2um以上)
+#for (CDP)	make_oversize 2 [G] as (ACO)
+#for (ACO & !PSL) warning  PSLとACTの重なりが小さすぎる(2um以上)
+;
+; Diffusion(Act)-ChannelStop
+;
+;#for (CDN)	make_oversize 3 [G] as (ACO)
+;#for (CDN)	make_oversize 8 [G] as (ACO) ; for Phenitec
+;#for (ACO & !CST) warning  CSTとN拡散(NSL&ACT)の重なりが小さすぎる(8um以上)
+;#for (CDP)	make_oversize 3 [G] as (ACO)
+;#for (CDP)	make_oversize 4 [G] as (ACO) ; for Phenitec
+;#for (ACO & !CST) warning  CSTとP拡散(PSL&ACT)の重なりが小さすぎる(4um以上)
+;
+#for (CDN & NWL)	make_oversize 3 [G] as (ACO) ; Ndif in NWL (Phenitec)
+#for (ACO & !CST) warning  CSTとNWL内のN領域(NSL&ACT)の重なりが小さすぎる(3um以上)
+#for (CDP & NWL)	make_oversize 4 [G] as (ACO) ; Pdif in NWL (Phenitec)
+#for (ACO & !CST) warning  CSTとNWL内のP領域(PSL&ACT)の重なりが小さすぎる(4um以上)
+#for (CDN & PWL)	make_oversize 8 [G] as (ACO) ; Ndif in PWL (Phenitec)
+#for (ACO & !CST) warning  CSTとPWL内のP領域(NSL&ACT)の重なりが小さすぎる(8um以上)
+#for (CDP & PWL)	make_oversize 3 [G] as (ACO) ; Pdif in PWL (Phenitec)
+#for (ACO & !CST) warning  CSTとPWL内のP領域(PSL&ACT)の重なりが小さすぎる(3um以上)
+;
+; Well-ChannelStop
+;
+#for (CST)	make_oversize 2 [G] as (CSO)
+#for (CSO & !NWL & !PWL) warning  NWL/PWLとCSTの重なりが小さすぎる(2um以上)
+;
+; N-Select/P-select overlap
+;
+#for (NSL & PSL) warning  NSLとPSELが重なっている
+;
+; Active without Nsel/Psel
+;
+#for (ACT) warning  NSLもPSLもかかっていないACT
+;
+; Well-Well gap
+;
+#for (NWL) check_gap 14 [G] to (NWL)        ; NWL gap=14, for Phenitec
+#for (PWL) check_gap 14 [G] to (PWL)        ; PWL gap=14, for Phenitec
+#for (NWL & PWL) warning  NWとPWLの重なり ; (2016/9/17:added by akita11)
+;;
+; modified VIA overlap error
+;  Chikau Takahashi 2016.4.25
+;  Junichi Akita 2016.6.13 & 2016.7.3
+#for (VIA)	make_oversize 1 [G] as (AVI)　　
+#for (AVI & POL) warning  VIAとPOLの間隔が小さすぎる(1um以上)
+;#for (AVI & NWL) warning  VIAとNWLの間隔が小さすぎる(1um以上)
+;#for (AVI & PWL) warning  VIAとPWLの間隔が小さすぎる(1um以上)
+;#for (AVI & CST) warning  VIAとCSTの間隔が小さすぎる(1um以上)
+;#for (AVI & ACT) warning  VIAとACTの間隔が小さすぎる(1um以上)
+;#for (AVI & CNP) warning  VIAとCNPの間隔が小さすぎる(1um以上)
+#for (AVI & CNA) warning  VIAとCNAの間隔が小さすぎる(1um以上)
+;#for (AVI & POL) warning  VIAとPOLの間隔が小さすぎる(1um以上)
