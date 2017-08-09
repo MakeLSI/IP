@@ -1,5 +1,6 @@
 # 2um Hibikino/PTS DRC
 # ver1.00 : based on hibikino-drc.py (ver1.00, 2017/1/24): akita11 akita@ifdl.jp
+# ver1.10 : gate extension = 2 -> 3um
 
 # simpe function to print # errors - unused.
 def printErrors(msg) :
@@ -100,7 +101,7 @@ geomArea(CNP, 4, 4, "CNP size != 2x2")
 geomArea(VIA, 16, 16, "VIA size != 4x4")
 
 print "Check MOS gate extension"
-geomExtension(POL, ACT, 2, "POL gate extension < 2")
+geomExtension(POL, ACT, 3, "POL gate extension < 3")
 
 print "Check Overlap"
 #geomOverlap(NWL, PWL, 0, "NWL/PWL overlap")
