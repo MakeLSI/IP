@@ -1,6 +1,7 @@
 # 2um Hibikino/PTS DRC
 # ver1.00 : based on hibikino-drc.py (ver1.00, 2017/1/24): akita11 akita@ifdl.jp
 # ver1.10 : gate extension = 2 -> 3um
+# ver1.20 : CST-Active rule
 
 # simpe function to print # errors - unused.
 def printErrors(msg) :
@@ -80,6 +81,10 @@ geomWidth(CNP, 2, "CNP width < 2")
 print "Check Enclose"
 CDA = geomOr(CDN, CDP) # both active
 AWL = geomOr(NWL, PWL) # both well
+NAP = geomAnd(CDN, PWL) # Nact in PWL, for Hibikino/PTS sharerd rule
+NAN = geomAnd(CDN, NWL) # Nact in NWL, for Hibikino/PTS sharerd rule
+PAP = geomAnd(CDP, PWL) # Nact in PWL, for Hibikino/PTS sharerd rule
+PAN = geomAnd(CDP, NWL) # Nact in NWL, for Hibikino/PTS sharerd rule
 geomEnclose(ML1, CNA, 2, "ML1/CNA < 2")
 geomEnclose(CDA, CNA, 2, "CDN&CDP/CNA < 2")
 geomEnclose(ML1, CNP, 2, "ML1/CNP < 2")
@@ -88,7 +93,11 @@ geomEnclose(VIA, ML1, 2, "ML1/VIA < 2")
 geomEnclose(VIA, ML2, 2, "ML1/VIA < 2")
 geomEnclose(NSL, CDN, 2, "NSL/ACT < 2")
 geomEnclose(PSL, CDP, 2, "NSL/ACT < 2")
-geomEnclose(CST, CDA, 3, "CDN&CDP/CST < 3")
+#geomEnclose(CST, CDA, 3, "CDN&CDP/CST < 3")
+geomEnclose(CST, NAP, 8, "CDN in PWL/CST < 8") # Hibikino/PTS sharerd rule
+geomEnclose(CST, NAN, 3, "CDN in NWL/CST < 3") # Hibikino/PTS sharerd rule
+geomEnclose(CST, PAP, 3, "CDP in PWL/CST < 3") # Hibikino/PTS sharerd rule
+geomEnclose(CST, PAN, 4, "CDP in NWL/CST < 4") # Hibikino/PTS sharerd rule
 geomEnclose(AWL, CST, 2, "CST/NWL&PWL < 2")
 geomEnclose(NWL, CDN, 5, "NWL/Nact < 5") # Hibikino/PTS sharerd rule
 geomEnclose(NWL, CDP, 6, "NWL/Pact < 6") # Hibikino/PTS sharerd rule
